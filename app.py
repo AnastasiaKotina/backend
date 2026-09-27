@@ -12,5 +12,14 @@ def submit():
         f.write(text + '\n')
     return jsonify({'status': 'ok', 'received': text})
 
+@app.route('/read', methods=['GET'])
+def read_file():
+    try:
+        with open('data.txt', 'r', encoding='utf-8') as f:
+            content = f.read()
+    except FileNotFoundError:
+        content = ''
+    return jsonify({'status': 'ok', 'content': content})
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
