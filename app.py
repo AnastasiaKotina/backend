@@ -8,7 +8,7 @@ CORS(app)
 def submit():
     data = request.get_json()
     text = data.get('text', '')
-    with open('data.txt', 'a', encoding='utf-8') as f:
+    with open('data/data.txt', 'a', encoding='utf-8') as f:
         f.write(text + '\n')
     return jsonify({'status': 'ok', 'received': text})
 
@@ -22,4 +22,4 @@ def read_file():
     return jsonify({'status': 'ok', 'content': content})
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
